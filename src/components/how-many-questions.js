@@ -11,13 +11,14 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import './how-many-questions.css';
+import './styles/how-many-questions.css';
 
 // import axios from 'axios';
-// import { useState } from 'react';
+import { useState } from 'react';
+// import { DataContext } from '../providers/data-context';
 
 const HowManyQuestions = () => {
-  // const [numberOfQuestions, setNumberOfQuestions] = useState(0);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
 
   // const escolheValor = async () => {
   //   const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}`;
@@ -26,6 +27,15 @@ const HowManyQuestions = () => {
   //   console.log(url);
   //   console.log(response);
   // };
+
+  const addNumberOfQuestion = () => {
+    setNumberOfQuestions(Number(numberOfQuestions) + 1);
+  };
+
+  const removeNumberOfQuestion = () => {
+    if (numberOfQuestions === 0) return;
+    setNumberOfQuestions(Number(numberOfQuestions) - 1);
+  };
 
   return (
     <Container>
@@ -60,17 +70,25 @@ const HowManyQuestions = () => {
                 size="small"
                 color="primary"
                 aria-label="add"
+                data-testid="remove-number-question"
+                onClick={removeNumberOfQuestion}
               >
                 <RemoveIcon />
               </Fab>
-              <Typography variant="h2" component="h3">
-                5
+              <Typography
+                variant="h2"
+                component="h3"
+                data-testid="number-question"
+              >
+                {numberOfQuestions}
               </Typography>
               <Fab
                 variant="extended"
                 size="small"
                 color="primary"
                 aria-label="add"
+                data-testid="add-number-question"
+                onClick={addNumberOfQuestion}
               >
                 <AddIcon />
               </Fab>
