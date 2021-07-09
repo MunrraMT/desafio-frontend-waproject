@@ -33,6 +33,9 @@ const HowManyQuestions = () => {
   };
 
   const addNumberOfQuestion = () => {
+    if (numberOfQuestionsChosen >= 10) {
+      return setNumberOfQuestionsChosen(10);
+    }
     setNumberOfQuestionsChosen(Number(numberOfQuestionsChosen) + 1);
   };
 
