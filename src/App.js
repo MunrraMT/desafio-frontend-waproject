@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import './App.css';
 import HomeTitle from './components/home-title';
+import ReviewReport from './components/review-report';
 import Routes from './routes';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       </header>
       <main>
         <Routes />
+        <ReviewReport />
       </main>
     </Grid>
   );
