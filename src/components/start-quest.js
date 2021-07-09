@@ -18,29 +18,29 @@ const StartQuest = () => {
   const history = useHistory();
 
   const getDataApi = async (inOut) => {
-    if (inOut === false) return [];
+    if (inOut === false) return context.setQuestionsData([]);
 
     const url = `https://opentdb.com/api.php?amount=${context.numberQuestions}`;
     const data = await axios
       .get(url)
       .then(({ data }) => data.results)
-      .catch(cancelQuests());
+      .catch((e) => console.log(e));
 
-    return data;
+    context.setQuestionsData(data);
   };
 
   const saveInContext = async (inOut) => {
     context.setStarted(inOut);
-    context.setQuestionsData(inOut);
   };
 
-  const startQuests = () => {
+  const btnStartQuests = async () => {
     getDataApi(true);
-    saveInContext(true);
+    await saveInContext(true);
     history.push('/quests');
   };
 
-  const cancelQuests = () => {
+  const btnCancelQuests = () => {
+    getDataApi(false);
     saveInContext(false);
     history.push('/');
   };
@@ -72,7 +72,7 @@ const StartQuest = () => {
               size="large"
               variant="contained"
               color="primary"
-              onClick={startQuests}
+              onClick={btnStartQuests}
             >
               start
             </Button>
@@ -82,7 +82,7 @@ const StartQuest = () => {
               size="large"
               variant="contained"
               color="primary"
-              onClick={cancelQuests}
+              onClick={btnCancelQuests}
             >
               cancel
             </Button>
