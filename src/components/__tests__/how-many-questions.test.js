@@ -21,18 +21,14 @@ describe('Teste do componente HowManyQuestions', () => {
 
     fireEvent.click(getByTestId('add-number-question'));
 
-    expect(getByTestId('number-question').textContent).toEqual('1');
+    expect(getByTestId('number-question').textContent).toEqual('6');
   });
 
   test('Testando diminuição do número de perguntas', () => {
     const { getByTestId } = render(<HowManyQuestions />);
 
-    fireEvent.click(getByTestId('add-number-question'));
-    fireEvent.click(getByTestId('add-number-question'));
-    fireEvent.click(getByTestId('add-number-question'));
-
     fireEvent.click(getByTestId('remove-number-question'));
 
-    expect(getByTestId('number-question').textContent).toEqual('2');
+    expect(getByTestId('number-question').textContent).toEqual('4');
   });
 });

@@ -1,3 +1,7 @@
 .card-quest-number {
   background-color: #d0d0d0 !important;
 }
+
+.btn-start-question {
+  margin-top: 1rem !important;
+}

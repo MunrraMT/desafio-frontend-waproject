@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { createContext } from 'react';
 
 export const DataContext = createContext({});
 
 export const DataProvider = (props) => {
-  const data = [];
+  const [userInfo, setUserInfo] = useState({
+    numberQuestions: '',
+    questions: [],
+  });
 
   return (
-    <DataContext.Provider value={{ data }}>
+    <DataContext.Provider value={{ userInfo, setUserInfo }}>
       {props.children}
     </DataContext.Provider>
   );
