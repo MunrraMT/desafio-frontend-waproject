@@ -1,3 +1,13 @@
+import {
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+} from '@material-ui/core';
+import './styles/start-quest.css';
 import axios from 'axios';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -7,7 +17,7 @@ const StartQuest = () => {
   const { userInfo, setUserInfo } = useContext(DataContext);
   const history = useHistory();
 
-  const getDataApi = async () => {
+  const getDataApi = async (inOut) => {
     const url = `https://opentdb.com/api.php?amount=${userInfo.numberQuestions}`;
     const data = await axios
       .get(url)
@@ -15,22 +25,77 @@ const StartQuest = () => {
       .then((data) => data.results)
       .catch((e) => console.log(e));
 
-    localStorage.setItem('quests', JSON.stringify(data));
+    if (inOut === true) {
+      localStorage.setItem('quests', JSON.stringify(data));
+    } else {
+      localStorage.removeItem('quests');
+    }
   };
 
-  const saveInContext = () => {
+  const saveInContext = (inOut) => {
     setUserInfo({
-      authenticated: true,
+      authenticated: inOut,
     });
   };
 
   const startQuests = () => {
-    getDataApi();
-    saveInContext();
+    getDataApi(true);
+    saveInContext(true);
     history.push('/quest');
   };
 
-  return <h3 onClick={startQuests}>Start {userInfo.numberQuestions}</h3>;
+  const cancelQuests = () => {
+    getDataApi(false);
+    saveInContext(false);
+    history.push('/');
+  };
+
+  return (
+    <Box m="1rem" maxWidth="30rem" minWidth="20rem">
+      <Card className="card-quest-number" variant="outlined">
+        <CardContent>
+          <Typography align="center" variant="h5" component="h2">
+            {userInfo.numberQuestions} perguntas?
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Grid
+            container
+            direction="column"
+            alignContent="center"
+            justifyContent="space-between"
+          >
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justifyContent="space-around"
+            ></Grid>
+            <Button
+              data-testid="btn-start-cancel"
+              className="btn-start-cancel"
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={startQuests}
+            >
+              start
+            </Button>
+            <Button
+              data-testid="btn-start-cancel"
+              className="btn-start-cancel"
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={cancelQuests}
+            >
+              cancel
+            </Button>
+          </Grid>
+        </CardActions>
+      </Card>
+    </Box>
+  );
 };
 
 export default StartQuest;
