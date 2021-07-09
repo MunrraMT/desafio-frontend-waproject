@@ -8,11 +8,6 @@ describe('Teste do componente HowManyQuestions', () => {
 
   test('Testando título do componente', () => {
     const { getByText } = render(<HowManyQuestions />);
-    expect(getByText('Desafio Front End')).toBeTruthy();
-  });
-
-  test('Testando subtítulo do componente', () => {
-    const { getByText } = render(<HowManyQuestions />);
     expect(getByText('Quantas perguntas deseja responder?')).toBeTruthy();
   });
 
