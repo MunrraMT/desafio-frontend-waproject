@@ -72,7 +72,7 @@ const StartQuest = () => {
               justifyContent="space-around"
             ></Grid>
             <Button
-              data-testid="btn-start-cancel"
+              data-testid="btn-start-quest"
               className="btn-start-cancel"
               size="large"
               variant="contained"
@@ -82,7 +82,7 @@ const StartQuest = () => {
               start
             </Button>
             <Button
-              data-testid="btn-start-cancel"
+              data-testid="btn-cancel-quest"
               className="btn-start-cancel"
               size="large"
               variant="contained"
