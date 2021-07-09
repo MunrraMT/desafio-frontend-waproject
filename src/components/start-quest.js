@@ -14,38 +14,33 @@ import { useHistory } from 'react-router-dom';
 import { DataContext } from '../providers/data-context';
 
 const StartQuest = () => {
-  const { userInfo, setUserInfo } = useContext(DataContext);
+  const context = useContext(DataContext);
   const history = useHistory();
 
   const getDataApi = async (inOut) => {
-    const url = `https://opentdb.com/api.php?amount=${userInfo.numberQuestions}`;
+    if (inOut === false) return [];
+
+    const url = `https://opentdb.com/api.php?amount=${context.numberQuestions}`;
     const data = await axios
       .get(url)
-      .then((res) => res.data)
-      .then((data) => data.results)
-      .catch((e) => console.log(e));
+      .then(({ data }) => data.results)
+      .catch(cancelQuests());
 
-    if (inOut === true) {
-      localStorage.setItem('quests', JSON.stringify(data));
-    } else {
-      localStorage.removeItem('quests');
-    }
+    return data;
   };
 
-  const saveInContext = (inOut) => {
-    setUserInfo({
-      authenticated: inOut,
-    });
+  const saveInContext = async (inOut) => {
+    context.setStarted(inOut);
+    context.setQuestionsData(inOut);
   };
 
   const startQuests = () => {
     getDataApi(true);
     saveInContext(true);
-    history.push('/quest');
+    history.push('/quests');
   };
 
   const cancelQuests = () => {
-    getDataApi(false);
     saveInContext(false);
     history.push('/');
   };
@@ -55,7 +50,7 @@ const StartQuest = () => {
       <Card className="card-quest-number" variant="outlined">
         <CardContent>
           <Typography align="center" variant="h5" component="h2">
-            {userInfo.numberQuestions} perguntas?
+            {context.numberQuestions} perguntas?
           </Typography>
         </CardContent>
         <CardActions>
