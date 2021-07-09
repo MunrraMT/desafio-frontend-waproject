@@ -34,7 +34,7 @@ const StartQuest = () => {
   };
 
   const btnStartQuests = async () => {
-    getDataApi(true);
+    await getDataApi(true);
     await saveInContext(true);
     history.push('/quests');
   };
