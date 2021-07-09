@@ -18,14 +18,13 @@ import { DataContext } from '../providers/data-context';
 import { useHistory } from 'react-router-dom';
 
 const HowManyQuestions = () => {
-  const [numberOfQuestions, setNumberOfQuestions] = useState(5);
-  const { setUserInfo } = useContext(DataContext);
+  const [numberOfQuestionsChosen, setNumberOfQuestionsChosen] = useState(5);
+
+  const context = useContext(DataContext);
   const history = useHistory();
 
   const saveInContext = () => {
-    setUserInfo({
-      numberQuestions: numberOfQuestions,
-    });
+    context.setNumberQuestions(numberOfQuestionsChosen);
   };
 
   const selectedNumber = () => {
@@ -34,12 +33,14 @@ const HowManyQuestions = () => {
   };
 
   const addNumberOfQuestion = () => {
-    setNumberOfQuestions(Number(numberOfQuestions) + 1);
+    setNumberOfQuestionsChosen(Number(numberOfQuestionsChosen) + 1);
   };
 
   const removeNumberOfQuestion = () => {
-    if (numberOfQuestions <= 1) return;
-    setNumberOfQuestions(Number(numberOfQuestions) - 1);
+    if (numberOfQuestionsChosen <= 1) {
+      return setNumberOfQuestionsChosen(1);
+    }
+    setNumberOfQuestionsChosen(Number(numberOfQuestionsChosen) - 1);
   };
 
   return (
@@ -78,7 +79,7 @@ const HowManyQuestions = () => {
                 component="h3"
                 data-testid="number-question"
               >
-                {numberOfQuestions}
+                {numberOfQuestionsChosen}
               </Typography>
               <Fab
                 variant="extended"
