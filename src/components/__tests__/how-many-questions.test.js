@@ -11,6 +11,13 @@ describe('Teste do componente HowManyQuestions', () => {
     expect(getByText('Quantas perguntas deseja responder?')).toBeTruthy();
   });
 
+  test('Testando texto do btn do componente', () => {
+    const { getByTestId } = render(<HowManyQuestions />);
+    const txtCorrect = 'escolher quantidade';
+    const txtBtn = getByTestId('btn-start-question').textContent;
+    expect(txtBtn).toEqual(txtCorrect);
+  });
+
   test('Testando aumento do número de perguntas', () => {
     const { getByTestId } = render(<HowManyQuestions />);
 
