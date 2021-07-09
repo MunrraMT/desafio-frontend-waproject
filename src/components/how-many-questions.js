@@ -13,7 +13,6 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import './styles/how-many-questions.css';
 
-import axios from 'axios';
 import { useState, useContext } from 'react';
 import { DataContext } from '../providers/data-context';
 import { useHistory } from 'react-router-dom';
@@ -23,28 +22,15 @@ const HowManyQuestions = () => {
   const { setUserInfo } = useContext(DataContext);
   const history = useHistory();
 
-  const getDataApi = async () => {
-    const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}`;
-    const data = await axios
-      .get(url)
-      .then((res) => res.data)
-      .then((data) => data.results)
-      .catch((e) => console.log(e));
-
-    localStorage.setItem('quests', JSON.stringify(data));
-  };
-
   const saveInContext = () => {
     setUserInfo({
-      authenticated: true,
       numberQuestions: numberOfQuestions,
     });
   };
 
-  const startQuestions = () => {
-    getDataApi();
+  const selectedNumber = () => {
     saveInContext();
-    history.push('/quest');
+    history.push('/start');
   };
 
   const addNumberOfQuestion = () => {
@@ -52,7 +38,7 @@ const HowManyQuestions = () => {
   };
 
   const removeNumberOfQuestion = () => {
-    if (numberOfQuestions === 0) return;
+    if (numberOfQuestions <= 1) return;
     setNumberOfQuestions(Number(numberOfQuestions) - 1);
   };
 
@@ -111,9 +97,9 @@ const HowManyQuestions = () => {
               size="large"
               variant="contained"
               color="primary"
-              onClick={startQuestions}
+              onClick={selectedNumber}
             >
-              Iniciar questionário
+              escolher quantidade
             </Button>
           </Grid>
         </CardActions>

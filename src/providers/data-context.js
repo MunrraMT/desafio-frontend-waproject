@@ -6,7 +6,7 @@ export const DataContext = createContext({});
 export const DataProvider = (props) => {
   const [userInfo, setUserInfo] = useState({
     authenticated: false,
-    numberQuestions: '',
+    numberQuestions: 0,
   });
 
   return (

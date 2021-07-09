@@ -1,21 +1,19 @@
-import { useContext } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import HowManyQuestions from './components/how-many-questions';
+import StartQuest from './components/start-quest';
+import { useContext } from 'react';
 import { DataContext } from './providers/data-context';
 
 const Routes = () => {
-  const { userInfo } = useContext(DataContext);
+  const StartQuestAuth = ({ component: Component, ...rest }) => {
+    const { userInfo } = useContext(DataContext);
+    const valid = userInfo.numberQuestions > 0;
 
-  const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
       <Route
         {...rest}
         render={(props) =>
-          userInfo.authenticated ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to={{ pathname: '/' }} />
-          )
+          valid ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
         }
       />
     );
@@ -25,8 +23,7 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={HowManyQuestions} />
-        <Route exact path="/app" component={() => <h3>App</h3>} />
-        <PrivateRoute exact path="/quest" component={() => <h3>Quest</h3>} />
+        <StartQuestAuth exact path="/start" component={StartQuest} />
       </Switch>
     </BrowserRouter>
   );
