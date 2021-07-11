@@ -1,0 +1,5 @@
+@media screen and (min-width: 900px) {
+  .box-review-report {
+    width: 60vw !important;
+  }
+}

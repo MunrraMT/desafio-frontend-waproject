@@ -1,23 +1,14 @@
-import { Box, Grid, Card, CardActions, Button } from '@material-ui/core';
+import { Box, Card, CardActions, Button, Grid } from '@material-ui/core';
+import './styles/review-report.css';
 
 const ReviewReport = () => {
   return (
-    <Box m="1rem" maxWidth="30rem">
-      <Card className="card-quest-number" variant="outlined">
-        <CardActions>
-          <Grid
-            container
-            direction="column"
-            alignContent="center"
-            justifyContent="space-between"
-          >
-            <Grid
-              container
-              direction="row"
-              alignItems="center"
-              justifyContent="space-around"
-            ></Grid>
+    <Grid container justifyContent="center">
+      <Box width="90vw" className="box-review-report">
+        <Card variant="outlined">
+          <CardActions>
             <Button
+              fullWidth
               data-testid="btn-review-report"
               size="large"
               variant="contained"
@@ -25,10 +16,10 @@ const ReviewReport = () => {
             >
               Rever último questionário
             </Button>
-          </Grid>
-        </CardActions>
-      </Card>
-    </Box>
+          </CardActions>
+        </Card>
+      </Box>
+    </Grid>
   );
 };
 
