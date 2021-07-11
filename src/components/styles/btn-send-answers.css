@@ -1,0 +1,10 @@
+.box-send-answers {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .box-send-answers {
+    width: 60vw !important;
+  }
+}
