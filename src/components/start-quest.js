@@ -26,7 +26,6 @@ const StartQuest = () => {
       .then(({ data }) => data.results)
       .catch((e) => console.log(e));
 
-    localStorage.setItem('questions', JSON.stringify(data));
     context.setQuestionsData(data);
   };
 
