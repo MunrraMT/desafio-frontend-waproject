@@ -47,7 +47,7 @@ const HowManyQuestions = () => {
   };
 
   return (
-    <Box m="1rem" maxWidth="30rem">
+    <Box m="1rem" width="90vw" className="box-quest-number">
       <Card className="card-quest-number" variant="outlined">
         <CardContent>
           <Typography align="center" variant="h5" component="h2">
