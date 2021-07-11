@@ -3,6 +3,10 @@
   margin-bottom: 1rem;
 }
 
+.card-send-answers {
+  background-color: #ededed !important;
+}
+
 @media screen and (min-width: 900px) {
   .box-send-answers {
     width: 60vw !important;

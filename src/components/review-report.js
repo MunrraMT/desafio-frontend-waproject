@@ -5,7 +5,7 @@ const ReviewReport = () => {
   return (
     <Grid container justifyContent="center">
       <Box width="90vw" className="box-review-report">
-        <Card variant="outlined">
+        <Card variant="outlined" className="card-review-report">
           <CardActions>
             <Button
               fullWidth

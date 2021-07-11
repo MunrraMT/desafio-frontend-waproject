@@ -5,7 +5,7 @@ const BtnSendAnswers = () => {
   return (
     <Grid container justifyContent="center">
       <Box width="90vw" className="box-send-answers">
-        <Card variant="outlined">
+        <Card variant="outlined" className="card-send-answers">
           <CardActions>
             <Button
               fullWidth
