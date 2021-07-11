@@ -1,0 +1,28 @@
+.avatar-question {
+  background-color: #303f9f !important;
+}
+
+.question-formated {
+  list-style: none !important;
+}
+
+.list-question-formated {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.btn-send-answers {
+  margin: 1rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+@media screen and (min-width: 900px) {
+  .box-list-questions {
+    width: 60vw !important;
+  }
+}
+
+.answers-grid {
+  margin-left: 1rem;
+}
