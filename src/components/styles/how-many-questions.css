@@ -1,11 +1,3 @@
-.card-quest-number {
-  background-color: #ededed !important;
-}
-
-.btn-start-question {
-  margin-top: 1rem !important;
-}
-
 @media screen and (min-width: 900px) {
   .box-quest-number {
     width: 60vw !important;

@@ -1,11 +1,30 @@
-import { Box, Button, Card, CardActions, Grid } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
 import './styles/btn-send-answers.css';
 
+const useStyles = makeStyles({
+  boxSendAnswers: {
+    marginTop: '0.5rem',
+    marginBottom: '1rem',
+  },
+  cardSendAnswers: {
+    backgroundColor: '#ededed !important',
+  },
+});
+
 const BtnSendAnswers = () => {
+  const classes = useStyles();
+
   return (
     <Grid container justifyContent="center">
-      <Box width="90vw" className="box-send-answers">
-        <Card variant="outlined" className="card-send-answers">
+      <Box width="90vw" className={classes.boxSendAnswers}>
+        <Card variant="outlined" className={classes.cardSendAnswers}>
           <CardActions>
             <Button
               fullWidth

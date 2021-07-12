@@ -1,11 +1,3 @@
-.paper-title-app {
-  background-color: #ededed !important;
-}
-
-.box-title-app {
-  margin-top: 0.5rem !important;
-}
-
 @media screen and (min-width: 900px) {
   .box-title-app {
     width: 60vw !important;

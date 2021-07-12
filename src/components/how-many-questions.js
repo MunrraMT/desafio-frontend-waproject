@@ -7,17 +7,26 @@ import {
   CardActions,
   Fab,
   Button,
+  makeStyles,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-
-import './styles/how-many-questions.css';
-
 import { useState, useContext } from 'react';
 import { DataContext } from '../providers/data-context';
 import { useHistory } from 'react-router-dom';
+import './styles/how-many-questions.css';
+
+const useStyles = makeStyles({
+  cardQuestNumber: {
+    backgroundColor: '#ededed !important',
+  },
+  btnStartQuestion: {
+    marginTop: '1rem !important',
+  },
+});
 
 const HowManyQuestions = () => {
+  const classes = useStyles();
   const [numberOfQuestionsChosen, setNumberOfQuestionsChosen] = useState(5);
 
   const context = useContext(DataContext);
@@ -48,7 +57,7 @@ const HowManyQuestions = () => {
 
   return (
     <Box m="1rem" width="90vw" className="box-quest-number">
-      <Card className="card-quest-number" variant="outlined">
+      <Card className={classes.cardQuestNumber} variant="outlined">
         <CardContent>
           <Typography align="center" variant="h5" component="h2">
             Quantas perguntas deseja responder?
@@ -97,7 +106,7 @@ const HowManyQuestions = () => {
             </Grid>
             <Button
               data-testid="btn-start-question"
-              className="btn-start-question"
+              className={classes.btnStartQuestion}
               size="large"
               variant="contained"
               color="primary"
