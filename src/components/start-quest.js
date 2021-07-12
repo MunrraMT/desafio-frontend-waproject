@@ -8,7 +8,6 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core';
-import './styles/start-quest.css';
 import axios from 'axios';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -17,6 +16,11 @@ import { DataContext } from '../providers/data-context';
 const useStyles = makeStyles({
   btnStartCancel: {
     marginTop: '1rem !important',
+  },
+  boxStartCancel: {
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
   },
 });
 
@@ -54,7 +58,7 @@ const StartQuest = () => {
   };
 
   return (
-    <Box m="1rem" width="90vw" className="box-start-cancel">
+    <Box m="1rem" width="90vw" className={classes.boxStartCancel}>
       <Card className={classes.btnStartCancel} variant="outlined">
         <CardContent>
           <Typography align="center" variant="h5" component="h2">

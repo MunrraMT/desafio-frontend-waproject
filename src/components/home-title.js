@@ -1,5 +1,4 @@
 import { Box, Paper, Typography, makeStyles } from '@material-ui/core';
-import './styles/home-title.css';
 
 const useStyles = makeStyles({
   paperTitleApp: {
@@ -7,6 +6,9 @@ const useStyles = makeStyles({
   },
   boxTitleApp: {
     marginTop: '0.5rem !important',
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
   },
 });
 

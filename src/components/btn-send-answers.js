@@ -6,15 +6,17 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import './styles/btn-send-answers.css';
 
 const useStyles = makeStyles({
   boxSendAnswers: {
     marginTop: '0.5rem',
     marginBottom: '1rem',
-  },
-  cardSendAnswers: {
-    backgroundColor: '#ededed !important',
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
+    cardSendAnswers: {
+      backgroundColor: '#ededed !important',
+    },
   },
 });
 

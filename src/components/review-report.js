@@ -6,10 +6,14 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import './styles/review-report.css';
 
 const useStyles = makeStyles({
   cardReviewReport: { backgroundColor: '#ededed !important' },
+  boxReviewReport: {
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
+  },
 });
 
 const ReviewReport = () => {
@@ -17,7 +21,7 @@ const ReviewReport = () => {
 
   return (
     <Grid container justifyContent="center">
-      <Box width="90vw" className="box-review-report">
+      <Box width="90vw" className={classes.boxReviewReport}>
         <Card variant="outlined" className={classes.cardReviewReport}>
           <CardActions>
             <Button

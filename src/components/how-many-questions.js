@@ -14,7 +14,6 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { useState, useContext } from 'react';
 import { DataContext } from '../providers/data-context';
 import { useHistory } from 'react-router-dom';
-import './styles/how-many-questions.css';
 
 const useStyles = makeStyles({
   cardQuestNumber: {
@@ -22,6 +21,11 @@ const useStyles = makeStyles({
   },
   btnStartQuestion: {
     marginTop: '1rem !important',
+  },
+  boxQuestNumber: {
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
   },
 });
 
@@ -56,7 +60,7 @@ const HowManyQuestions = () => {
   };
 
   return (
-    <Box m="1rem" width="90vw" className="box-quest-number">
+    <Box m="1rem" width="90vw" className={classes.boxQuestNumber}>
       <Card className={classes.cardQuestNumber} variant="outlined">
         <CardContent>
           <Typography align="center" variant="h5" component="h2">
