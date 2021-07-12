@@ -14,6 +14,7 @@ const Routes = () => {
           <Route exact path="/" component={HomePage} />
           <StartQuestRoute exact path="/start" />
           <QuestsRoute exact path="/quests" />
+          <Route exact path="/report" component={() => <h2>Relatório</h2>} />
         </Switch>
       </BrowserRouter>
     </DataProvider>

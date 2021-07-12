@@ -11,17 +11,50 @@ import {
   Radio,
   RadioGroup,
   Typography,
+  makeStyles,
+  FormLabel,
 } from '@material-ui/core';
 import { useContext } from 'react';
 import { DataContext } from '../providers/data-context';
-import { useFormik } from 'formik';
+import { Formik } from 'formik';
 import { useHistory } from 'react-router';
 import BtnSendAnswers from './btn-send-answers';
 import numberRandom from '../utils/number-random';
 import idFormater from '../utils/number-formater';
-import './styles/questions-formik.css';
+
+const useStyles = makeStyles({
+  answerGrid: {
+    marginLeft: '1rem',
+    width: '100% !important',
+  },
+  answerRadioGroup: {
+    width: '100% !important',
+  },
+  cardQuestNumber: {
+    backgroundColor: '#ededed !important',
+  },
+  btnSendAnswers: {
+    margin: '1rem !important',
+    marginTop: '0.5rem !important',
+    marginBottom: '2rem !important',
+  },
+  avatarQuestion: {
+    backgroundColor: '#303f9f !important',
+  },
+  errorMsg: {
+    color: '#FF0000 !important',
+    textAlign: 'right !important',
+    width: '100% !important',
+  },
+  boxListQuestions: {
+    '@media(min-width: 900px)': {
+      width: '60vw !important',
+    },
+  },
+});
 
 const Questions = () => {
+  const classes = useStyles();
   const context = useContext(DataContext);
   const history = useHistory();
 
@@ -35,17 +68,24 @@ const Questions = () => {
     return quetionsList;
   };
 
-  const formik = useFormik({
-    initialValues: {
-      ...questionList(),
-    },
-    onSubmit: (values) => {
-      context.setAnswersData(values);
-      history.push('/report');
-    },
-  });
+  const formSubmit = (values) => {
+    context.setAnswersData(values);
+    history.push('/report');
+  };
 
-  const listAnswersFormated = (question, id) => {
+  const validateQuestion = (values) => {
+    let erros = {};
+
+    for (const key in values) {
+      if (values[key] === '') {
+        erros[key] = 'faltando';
+      }
+    }
+
+    return erros;
+  };
+
+  const listAnswersFormated = (question) => {
     const correctAnswer = question['correct_answer'];
     const incorrectAnswers = question['incorrect_answers'];
     const answers = [correctAnswer, ...incorrectAnswers];
@@ -54,77 +94,112 @@ const Questions = () => {
     const answersFormated = answersSorted.map((answer) => {
       return (
         <FormControlLabel
-          key={numberRandom()}
           control={<Radio color="primary" />}
+          key={numberRandom()}
           label={answer}
           value={answer}
         />
       );
     });
 
-    return (
-      <Grid
-        container
-        direction="column"
-        alignItems="flex-start"
-        justifyContent="center"
-        className="answers-grid"
-      >
-        <RadioGroup
-          aria-label={idFormater(id)}
-          name={idFormater(id)}
-          value={formik.values[idFormater(id)]}
-          onChange={formik.handleChange}
-        >
-          {answersFormated}
-        </RadioGroup>
-      </Grid>
-    );
+    return answersFormated;
   };
 
-  const questionsList = context.questionsData.map((question, id) => {
-    return (
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-        key={numberRandom()}
-      >
-        <FormControl component="fieldset" className="question-formated">
-          <Box m="1rem" width="90vw" className="box-list-questions">
-            <Card className="card-quest-number" variant="outlined">
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className="avatar-question">
-                    {idFormater(id)}
-                  </Avatar>
-                }
-                title={
-                  'Difficulty: ' + `${question.difficulty}`.toLocaleUpperCase()
-                }
-                subheader={`${question.category}`}
-              />
-
-              <CardContent>
-                <Typography color="textPrimary" align="justify" gutterBottom>
-                  {`${question.question}`}
-                </Typography>
-              </CardContent>
-
-              <CardActions>{listAnswersFormated(question, id)}</CardActions>
-            </Card>
-          </Box>
-        </FormControl>
-      </Grid>
-    );
-  });
-
   return (
-    <form onSubmit={formik.handleSubmit}>
-      {questionsList}
-      <BtnSendAnswers />
-    </form>
+    <Formik
+      initialValues={{ ...questionList() }}
+      onSubmit={formSubmit}
+      validate={validateQuestion}
+    >
+      {(props) => (
+        <form onSubmit={props.handleSubmit}>
+          {context.questionsData.map((question, id) => (
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              key={numberRandom()}
+            >
+              <FormControl
+                component="fieldset"
+                className={classes.questionFormated}
+              >
+                <Box m="1rem" width="90vw" className={classes.boxListQuestions}>
+                  <Card className={classes.cardQuestNumber} variant="outlined">
+                    <CardHeader
+                      avatar={
+                        <Avatar
+                          aria-label="recipe"
+                          className={classes.avatarQuestion}
+                        >
+                          {idFormater(id)}
+                        </Avatar>
+                      }
+                      title={
+                        'Difficulty: ' +
+                        `${question.difficulty}`.toLocaleUpperCase()
+                      }
+                      subheader={`${question.category}`}
+                    />
+
+                    <FormLabel component="legend">
+                      <CardContent>
+                        <Typography
+                          color="textPrimary"
+                          align="justify"
+                          gutterBottom
+                        >
+                          {`${question.question}`}
+                        </Typography>
+                      </CardContent>
+                    </FormLabel>
+
+                    <CardActions>
+                      <Grid
+                        container
+                        direction="column"
+                        alignItems="flex-start"
+                        justifyContent="center"
+                        className={classes.answerGrid}
+                      >
+                        <RadioGroup
+                          className={classes.answerRadioGroup}
+                          aria-label={idFormater(id)}
+                          onChange={(event) => {
+                            props.setFieldValue(
+                              idFormater(id),
+                              event.currentTarget.value,
+                            );
+                          }}
+                          onBlur={props.handleBlur}
+                          value={props.values[idFormater(id)]}
+                          name={idFormater(id)}
+                        >
+                          {listAnswersFormated(question)}
+                          {props.errors[idFormater(id)] &&
+                          props.touched[idFormater(id)] ? (
+                            <Typography
+                              color="textPrimary"
+                              className={classes.errorMsg}
+                              gutterBottom
+                            >
+                              Precisa ser respondido
+                            </Typography>
+                          ) : null}
+                        </RadioGroup>
+                      </Grid>
+                    </CardActions>
+                  </Card>
+                </Box>
+              </FormControl>
+            </Grid>
+          ))}
+
+          <BtnSendAnswers />
+        </form>
+      )}
+    </Formik>
   );
 };
 
