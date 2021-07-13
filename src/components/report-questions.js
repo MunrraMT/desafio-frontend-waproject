@@ -11,11 +11,12 @@ import {
   makeStyles,
   FormLabel,
 } from '@material-ui/core';
-import { useEffect } from 'react';
 import numberRandom from '../utils/number-random';
 import idFormater from '../utils/number-formater';
 import CheckIcon from '@material-ui/icons/Check';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import ShowPonctuations from './show-ponctuations';
+import BtnReturnInit from './btn-return-init';
 
 const useStyles = makeStyles({
   answerGrid: {
@@ -52,23 +53,21 @@ const ReportQuestions = () => {
   const questionsLoad = JSON.parse(localStorage.getItem('last-questions'));
   const answersLoad = JSON.parse(localStorage.getItem('last-answers'));
 
-  useEffect(() => {
-    let acertos = 0;
-    let erros = 0;
+  let acertos = 0;
+  let erros = 0;
 
-    questionsLoad.forEach((question, id) => {
-      const correctAnswer = question['correct_answer'];
+  questionsLoad.forEach((question, id) => {
+    const correctAnswer = question['correct_answer'];
 
-      if (correctAnswer === answersLoad[idFormater(id)]) {
-        acertos += 1;
-      } else {
-        erros += 1;
-      }
-    });
-
-    localStorage.setItem('correct-punctuation', JSON.stringify(acertos));
-    localStorage.setItem('wrong-punctuation', JSON.stringify(erros));
+    if (correctAnswer === answersLoad[idFormater(id)]) {
+      acertos += 1;
+    } else {
+      erros += 1;
+    }
   });
+
+  localStorage.setItem('correct-punctuation', JSON.stringify(acertos));
+  localStorage.setItem('wrong-punctuation', JSON.stringify(erros));
 
   const listAnswersFormated = (question, questionID) => {
     const correctAnswer = question['correct_answer'];
@@ -221,7 +220,13 @@ const ReportQuestions = () => {
     );
   });
 
-  return questions;
+  return (
+    <section>
+      <ShowPonctuations />
+      {questions}
+      <BtnReturnInit />
+    </section>
+  );
 };
 
 export default ReportQuestions;
