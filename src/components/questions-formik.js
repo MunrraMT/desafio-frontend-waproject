@@ -89,19 +89,22 @@ const Questions = () => {
     return erros;
   };
 
-  const listAnswersFormated = (question) => {
+  const listAnswersFormated = (question, questionID) => {
     const correctAnswer = question['correct_answer'];
     const incorrectAnswers = question['incorrect_answers'];
     const answers = [correctAnswer, ...incorrectAnswers];
     const answersSorted = answers.sort();
 
-    const answersFormated = answersSorted.map((answer) => {
+    const answersFormated = answersSorted.map((answer, id) => {
       return (
         <FormControlLabel
           control={<Radio color="primary" />}
           key={numberRandom()}
           label={answer}
           value={answer}
+          data-testid={`card-answer-question-${idFormater(
+            questionID,
+          )}-${idFormater(id)}`}
         />
       );
     });
@@ -132,10 +135,12 @@ const Questions = () => {
                 <Box m="1rem" width="90vw" className={classes.boxListQuestions}>
                   <Card className={classes.cardQuestNumber} variant="outlined">
                     <CardHeader
+                      data-testid={`card-header-question-${idFormater(id)}`}
                       avatar={
                         <Avatar
                           aria-label="recipe"
                           className={classes.avatarQuestion}
+                          data-testid={`card-avatar-question-${idFormater(id)}`}
                         >
                           {idFormater(id)}
                         </Avatar>
@@ -153,6 +158,7 @@ const Questions = () => {
                           color="textPrimary"
                           align="justify"
                           gutterBottom
+                          data-testid={`card-txt-question-${idFormater(id)}`}
                         >
                           {`${question.question}`}
                         </Typography>
@@ -180,13 +186,16 @@ const Questions = () => {
                           value={props.values[idFormater(id)]}
                           name={idFormater(id)}
                         >
-                          {listAnswersFormated(question)}
+                          {listAnswersFormated(question, id)}
                           {props.errors[idFormater(id)] &&
                           props.touched[idFormater(id)] ? (
                             <Typography
                               color="textPrimary"
                               className={classes.errorMsg}
                               gutterBottom
+                              data-testid={`card-error-question-${idFormater(
+                                id,
+                              )}`}
                             >
                               Precisa ser respondido
                             </Typography>
@@ -199,7 +208,6 @@ const Questions = () => {
               </FormControl>
             </Grid>
           ))}
-
           <BtnSendAnswers />
         </form>
       )}
