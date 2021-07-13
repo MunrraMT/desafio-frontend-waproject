@@ -6,9 +6,14 @@ describe('Teste do componente ReviewReport', () => {
     render(<ReviewReport />);
   });
 
-  test('Testando texto do btn do componente', () => {
-    const { getByTestId } = render(<ReviewReport />);
-    const txtCorrect = 'Rever último questionário';
+  test('Testando texto do btn do componente quando existe relatório para mostrar', () => {
+    const renderComponent = () => {
+      localStorage.setItem('last-answers', JSON.stringify({ '01': 'ok' }));
+
+      return render(<ReviewReport />);
+    };
+    const { getByTestId } = renderComponent();
+    const txtCorrect = 'Rever último relatório';
     const txtBtn = getByTestId('btn-review-report').textContent;
     expect(txtBtn).toEqual(txtCorrect);
   });

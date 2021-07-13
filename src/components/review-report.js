@@ -6,6 +6,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
   cardReviewReport: { backgroundColor: '#ededed !important' },
@@ -18,26 +19,62 @@ const useStyles = makeStyles({
 
 const ReviewReport = () => {
   const classes = useStyles();
+  const history = useHistory();
 
-  return (
-    <Grid container justifyContent="center">
-      <Box width="90vw" className={classes.boxReviewReport}>
-        <Card variant="outlined" className={classes.cardReviewReport}>
-          <CardActions>
-            <Button
-              fullWidth
-              data-testid="btn-review-report"
-              size="large"
-              variant="contained"
-              color="primary"
-            >
-              Rever último questionário
-            </Button>
-          </CardActions>
-        </Card>
-      </Box>
-    </Grid>
-  );
+  const goLastReport = () => {
+    history.push('/report');
+  };
+
+  const showBtn = () => {
+    const lastReport = JSON.parse(localStorage.getItem('last-answers'));
+
+    if (lastReport === {} || lastReport === null) {
+      return (
+        <Grid container justifyContent="center">
+          <Box width="90vw" className={classes.boxReviewReport}>
+            <Card variant="outlined" className={classes.cardReviewReport}>
+              <CardActions>
+                <Button
+                  fullWidth
+                  data-testid="btn-review-report"
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={goLastReport}
+                  disabled
+                >
+                  Rever último relatório
+                </Button>
+              </CardActions>
+            </Card>
+          </Box>
+        </Grid>
+      );
+    } else {
+      return (
+        <Grid container justifyContent="center">
+          <Box width="90vw" className={classes.boxReviewReport}>
+            <Card variant="outlined" className={classes.cardReviewReport}>
+              <CardActions>
+                <Button
+                  fullWidth
+                  data-testid="btn-review-report"
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  onClick={goLastReport}
+                >
+                  Rever último relatório
+                </Button>
+              </CardActions>
+            </Card>
+          </Box>
+        </Grid>
+      );
+    }
+  };
+
+  return showBtn();
 };
 
 export default ReviewReport;
