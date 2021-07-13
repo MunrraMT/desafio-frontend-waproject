@@ -11,8 +11,6 @@ import {
   makeStyles,
   FormLabel,
 } from '@material-ui/core';
-import { useContext } from 'react';
-import { DataContext } from '../providers/data-context';
 import { useEffect } from 'react';
 import numberRandom from '../utils/number-random';
 import idFormater from '../utils/number-formater';
@@ -50,7 +48,6 @@ const useStyles = makeStyles({
 
 const ReportQuestions = () => {
   const classes = useStyles();
-  const context = useContext(DataContext);
 
   const questionsLoad = JSON.parse(localStorage.getItem('last-questions'));
   const answersLoad = JSON.parse(localStorage.getItem('last-answers'));
@@ -69,18 +66,21 @@ const ReportQuestions = () => {
       }
     });
 
-    context.setCorrectPunctuation(acertos);
-    context.setWrongPunctuation(erros);
+    localStorage.setItem('correct-punctuation', JSON.stringify(acertos));
+    localStorage.setItem('wrong-punctuation', JSON.stringify(erros));
   });
 
-  const listAnswersFormated = (question, id) => {
+  const listAnswersFormated = (question, questionID) => {
     const correctAnswer = question['correct_answer'];
     const incorrectAnswers = question['incorrect_answers'];
     const answers = [correctAnswer, ...incorrectAnswers];
     const answersSorted = answers.sort();
 
-    const answersFormated = answersSorted.map((answer) => {
-      if (answer === answersLoad[idFormater(id)] && answer === correctAnswer) {
+    const answersFormated = answersSorted.map((answer, answerID) => {
+      if (
+        answer === answersLoad[idFormater(questionID)] &&
+        answer === correctAnswer
+      ) {
         return (
           <Typography
             className={classes.correctAnswer}
@@ -88,14 +88,22 @@ const ReportQuestions = () => {
             align="justify"
             key={numberRandom()}
             gutterBottom
+            data-testid={`correct-answer-${idFormater(questionID)}-${idFormater(
+              answerID,
+            )}`}
           >
-            <CheckIcon className={classes.icon} />
+            <CheckIcon
+              className={classes.icon}
+              data-testid={`correct-icon-${idFormater(questionID)}-${idFormater(
+                answerID,
+              )}`}
+            />
             {answer}
           </Typography>
         );
       }
 
-      if (answer === answersLoad[idFormater(id)]) {
+      if (answer === answersLoad[idFormater(questionID)]) {
         return (
           <Typography
             className={classes.wrongAnswer}
@@ -103,8 +111,16 @@ const ReportQuestions = () => {
             align="justify"
             key={numberRandom()}
             gutterBottom
+            data-testid={`wrong-answer-${idFormater(questionID)}-${idFormater(
+              answerID,
+            )}`}
           >
-            <NotInterestedIcon className={classes.icon} />
+            <NotInterestedIcon
+              className={classes.icon}
+              data-testid={`wrong-icon-${idFormater(questionID)}-${idFormater(
+                answerID,
+              )}`}
+            />
             {answer}
           </Typography>
         );
@@ -118,6 +134,9 @@ const ReportQuestions = () => {
             align="justify"
             key={numberRandom()}
             gutterBottom
+            data-testid={`correct-no-selected-answer-${idFormater(
+              questionID,
+            )}-${idFormater(answerID)}`}
           >
             {answer}
           </Typography>
@@ -130,6 +149,9 @@ const ReportQuestions = () => {
           align="justify"
           gutterBottom
           key={numberRandom()}
+          data-testid={`no-selected-answer-${idFormater(
+            questionID,
+          )}-${idFormater(answerID)}`}
         >
           {answer}
         </Typography>
@@ -151,8 +173,13 @@ const ReportQuestions = () => {
         <Box m="1rem" width="90vw" className={classes.boxListQuestions}>
           <Card className={classes.cardQuestNumber} variant="outlined">
             <CardHeader
+              data-testid={`card-header-question-${idFormater(id)}`}
               avatar={
-                <Avatar aria-label="recipe" className={classes.avatarQuestion}>
+                <Avatar
+                  data-testid={`card-avatar-question-${idFormater(id)}`}
+                  aria-label={`question-avatar-${idFormater(id)}`}
+                  className={classes.avatarQuestion}
+                >
                   {idFormater(id)}
                 </Avatar>
               }
@@ -164,7 +191,12 @@ const ReportQuestions = () => {
 
             <FormLabel component="legend">
               <CardContent>
-                <Typography color="textPrimary" align="justify" gutterBottom>
+                <Typography
+                  data-testid={`card-txt-question-${idFormater(id)}`}
+                  color="textPrimary"
+                  align="justify"
+                  gutterBottom
+                >
                   {`${question.question}`}
                 </Typography>
               </CardContent>
