@@ -5,16 +5,16 @@ export const DataContext = createContext({
   numberQuestions: 0,
   started: false,
   questionsData: [],
-  answersData: {},
-  reportData: {},
+  correctPunctuation: 0,
+  wrongPunctuation: 0,
 });
 
 export const DataProvider = (props) => {
   const [numberQuestions, setNumberQuestions] = useState(0);
   const [started, setStarted] = useState(false);
   const [questionsData, setQuestionsData] = useState([]);
-  const [answersData, setAnswersData] = useState({});
-  const [reportData, setReportData] = useState({});
+  const [correctPunctuation, setCorrectPunctuation] = useState(0);
+  const [wrongPunctuation, setWrongPunctuation] = useState(0);
 
   return (
     <DataContext.Provider
@@ -25,10 +25,10 @@ export const DataProvider = (props) => {
         setStarted,
         questionsData,
         setQuestionsData,
-        answersData,
-        setAnswersData,
-        reportData,
-        setReportData,
+        correctPunctuation,
+        setCorrectPunctuation,
+        wrongPunctuation,
+        setWrongPunctuation,
       }}
     >
       {props.children}
