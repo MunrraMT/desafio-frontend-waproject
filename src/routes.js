@@ -1,10 +1,11 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { DataProvider } from './providers/data-context';
 
 import HomePage from './pages/home-page';
 
 import StartQuestRoute from './routes/start-quest-route';
 import QuestsRoute from './routes/questions-route';
-import { DataProvider } from './providers/data-context';
+import ReportRoute from './routes/report-route';
 
 const Routes = () => {
   return (
@@ -14,7 +15,11 @@ const Routes = () => {
           <Route exact path="/" component={HomePage} />
           <StartQuestRoute exact path="/start" />
           <QuestsRoute exact path="/quests" />
-          <Route exact path="/report" component={() => <h2>Relatório</h2>} />
+          <ReportRoute exact path="/report" />
+
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
         </Switch>
       </BrowserRouter>
     </DataProvider>
