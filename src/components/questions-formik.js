@@ -69,7 +69,11 @@ const Questions = () => {
   };
 
   const formSubmit = (values) => {
-    context.setAnswersData(values);
+    localStorage.setItem(
+      'last-questions',
+      JSON.stringify(context.questionsData),
+    );
+    localStorage.setItem('last-answers', JSON.stringify(values));
     history.push('/report');
   };
 
