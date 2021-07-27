@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/desafio-frontend-waproject/static/css/main.f1b0c0ed.chunk.css",
+    "main.js": "/desafio-frontend-waproject/static/js/main.5fe241b2.chunk.js",
+    "main.js.map": "/desafio-frontend-waproject/static/js/main.5fe241b2.chunk.js.map",
+    "runtime-main.js": "/desafio-frontend-waproject/static/js/runtime-main.d8bb81ff.js",
+    "runtime-main.js.map": "/desafio-frontend-waproject/static/js/runtime-main.d8bb81ff.js.map",
+    "static/js/2.53656a76.chunk.js": "/desafio-frontend-waproject/static/js/2.53656a76.chunk.js",
+    "static/js/2.53656a76.chunk.js.map": "/desafio-frontend-waproject/static/js/2.53656a76.chunk.js.map",
+    "static/js/3.a3993c3a.chunk.js": "/desafio-frontend-waproject/static/js/3.a3993c3a.chunk.js",
+    "static/js/3.a3993c3a.chunk.js.map": "/desafio-frontend-waproject/static/js/3.a3993c3a.chunk.js.map",
+    "index.html": "/desafio-frontend-waproject/index.html",
+    "static/css/main.f1b0c0ed.chunk.css.map": "/desafio-frontend-waproject/static/css/main.f1b0c0ed.chunk.css.map",
+    "static/js/2.53656a76.chunk.js.LICENSE.txt": "/desafio-frontend-waproject/static/js/2.53656a76.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d8bb81ff.js",
+    "static/js/2.53656a76.chunk.js",
+    "static/css/main.f1b0c0ed.chunk.css",
+    "static/js/main.5fe241b2.chunk.js"
+  ]
+}
