@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, HashRouter } from 'react-router-dom';
 import { DataProvider } from './providers/data-context';
 
 import HomePage from './pages/home-page';
@@ -10,18 +10,18 @@ import ReportRoute from './routes/report-route';
 const Routes = () => {
   return (
     <DataProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <StartQuestRoute exact path="/start" />
-          <QuestsRoute exact path="/quests" />
-          <ReportRoute exact path="/report" />
+          <Route exact path='/' component={HomePage} />
+          <StartQuestRoute exact path='/start' />
+          <QuestsRoute exact path='/quests' />
+          <ReportRoute exact path='/report' />
 
-          <Route path="*">
-            <Redirect to="/" />
+          <Route path='*'>
+            <Redirect to='/' />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </DataProvider>
   );
 };
