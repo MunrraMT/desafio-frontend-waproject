@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Loading = ({ dark }) => {
+const Loading = () => {
   const classes = useStyles();
 
   return (
