@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Redirect, Route } from 'react-router';
+import Loading from '../utils/loading';
 
 // import ReportPage from '../pages/report-page';
 const ReportPage = lazy(() => import('../pages/report-page'));
@@ -12,7 +13,7 @@ const ReportRoute = ({ ...rest }) => {
   return (
     <Route {...rest}>
       {valid ? (
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Loading />}>
           <ReportPage />
         </Suspense>
       ) : (

@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import Loading from '../utils/loading';
 
 // import ReportQuestions from '../components/report-questions';
 const ReportQuestions = lazy(() => import('../components/report-questions'));
@@ -6,7 +7,7 @@ const ReportQuestions = lazy(() => import('../components/report-questions'));
 const ReportPage = () => {
   return (
     <main>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loading />}>
         <ReportQuestions />
       </Suspense>
     </main>
