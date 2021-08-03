@@ -1,0 +1,2 @@
+(this["webpackJsonpdesafio-frontend-waproject"]=this["webpackJsonpdesafio-frontend-waproject"]||[]).push([[8],{165:function(e,n,t){"use strict";t.r(n);var c=t(0),s=t(2),i=Object(c.lazy)((function(){return Promise.all([t.e(4),t.e(6)]).then(t.bind(null,161))}));n.default=function(){return Object(s.jsx)("main",{children:Object(s.jsx)(c.Suspense,{fallback:Object(s.jsx)("p",{children:"Loading..."}),children:Object(s.jsx)(i,{})})})}}}]);
+//# sourceMappingURL=8.5fd40c8a.chunk.js.map

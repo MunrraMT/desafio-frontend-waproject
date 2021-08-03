@@ -1,22 +1,38 @@
 {
   "files": {
     "main.css": "/desafio-frontend-waproject/static/css/main.f1b0c0ed.chunk.css",
-    "main.js": "/desafio-frontend-waproject/static/js/main.ba4e71a1.chunk.js",
-    "main.js.map": "/desafio-frontend-waproject/static/js/main.ba4e71a1.chunk.js.map",
-    "runtime-main.js": "/desafio-frontend-waproject/static/js/runtime-main.d8bb81ff.js",
-    "runtime-main.js.map": "/desafio-frontend-waproject/static/js/runtime-main.d8bb81ff.js.map",
-    "static/js/2.6aaecfda.chunk.js": "/desafio-frontend-waproject/static/js/2.6aaecfda.chunk.js",
-    "static/js/2.6aaecfda.chunk.js.map": "/desafio-frontend-waproject/static/js/2.6aaecfda.chunk.js.map",
-    "static/js/3.a3993c3a.chunk.js": "/desafio-frontend-waproject/static/js/3.a3993c3a.chunk.js",
-    "static/js/3.a3993c3a.chunk.js.map": "/desafio-frontend-waproject/static/js/3.a3993c3a.chunk.js.map",
+    "main.js": "/desafio-frontend-waproject/static/js/main.4b684377.chunk.js",
+    "main.js.map": "/desafio-frontend-waproject/static/js/main.4b684377.chunk.js.map",
+    "runtime-main.js": "/desafio-frontend-waproject/static/js/runtime-main.5b5100ff.js",
+    "runtime-main.js.map": "/desafio-frontend-waproject/static/js/runtime-main.5b5100ff.js.map",
+    "static/js/2.64a31091.chunk.js": "/desafio-frontend-waproject/static/js/2.64a31091.chunk.js",
+    "static/js/2.64a31091.chunk.js.map": "/desafio-frontend-waproject/static/js/2.64a31091.chunk.js.map",
+    "static/js/3.9fb7177b.chunk.js": "/desafio-frontend-waproject/static/js/3.9fb7177b.chunk.js",
+    "static/js/3.9fb7177b.chunk.js.map": "/desafio-frontend-waproject/static/js/3.9fb7177b.chunk.js.map",
+    "static/js/4.9d6189f1.chunk.js": "/desafio-frontend-waproject/static/js/4.9d6189f1.chunk.js",
+    "static/js/4.9d6189f1.chunk.js.map": "/desafio-frontend-waproject/static/js/4.9d6189f1.chunk.js.map",
+    "static/js/5.3ec8ce38.chunk.js": "/desafio-frontend-waproject/static/js/5.3ec8ce38.chunk.js",
+    "static/js/5.3ec8ce38.chunk.js.map": "/desafio-frontend-waproject/static/js/5.3ec8ce38.chunk.js.map",
+    "static/js/6.b55976a7.chunk.js": "/desafio-frontend-waproject/static/js/6.b55976a7.chunk.js",
+    "static/js/6.b55976a7.chunk.js.map": "/desafio-frontend-waproject/static/js/6.b55976a7.chunk.js.map",
+    "static/js/7.67aafde7.chunk.js": "/desafio-frontend-waproject/static/js/7.67aafde7.chunk.js",
+    "static/js/7.67aafde7.chunk.js.map": "/desafio-frontend-waproject/static/js/7.67aafde7.chunk.js.map",
+    "static/js/8.5fd40c8a.chunk.js": "/desafio-frontend-waproject/static/js/8.5fd40c8a.chunk.js",
+    "static/js/8.5fd40c8a.chunk.js.map": "/desafio-frontend-waproject/static/js/8.5fd40c8a.chunk.js.map",
+    "static/js/9.d2b4752a.chunk.js": "/desafio-frontend-waproject/static/js/9.d2b4752a.chunk.js",
+    "static/js/9.d2b4752a.chunk.js.map": "/desafio-frontend-waproject/static/js/9.d2b4752a.chunk.js.map",
+    "static/js/10.0092dd21.chunk.js": "/desafio-frontend-waproject/static/js/10.0092dd21.chunk.js",
+    "static/js/10.0092dd21.chunk.js.map": "/desafio-frontend-waproject/static/js/10.0092dd21.chunk.js.map",
+    "static/js/11.f25225e4.chunk.js": "/desafio-frontend-waproject/static/js/11.f25225e4.chunk.js",
+    "static/js/11.f25225e4.chunk.js.map": "/desafio-frontend-waproject/static/js/11.f25225e4.chunk.js.map",
     "index.html": "/desafio-frontend-waproject/index.html",
     "static/css/main.f1b0c0ed.chunk.css.map": "/desafio-frontend-waproject/static/css/main.f1b0c0ed.chunk.css.map",
-    "static/js/2.6aaecfda.chunk.js.LICENSE.txt": "/desafio-frontend-waproject/static/js/2.6aaecfda.chunk.js.LICENSE.txt"
+    "static/js/2.64a31091.chunk.js.LICENSE.txt": "/desafio-frontend-waproject/static/js/2.64a31091.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d8bb81ff.js",
-    "static/js/2.6aaecfda.chunk.js",
+    "static/js/runtime-main.5b5100ff.js",
+    "static/js/2.64a31091.chunk.js",
     "static/css/main.f1b0c0ed.chunk.css",
-    "static/js/main.ba4e71a1.chunk.js"
+    "static/js/main.4b684377.chunk.js"
   ]
 }
