@@ -12,7 +12,7 @@ import {
   RadioGroup,
   Typography,
   makeStyles,
-  FormLabel,
+  FormLabel
 } from '@material-ui/core';
 import { useContext } from 'react';
 import { DataContext } from '../providers/data-context';
@@ -25,32 +25,32 @@ import idFormater from '../utils/number-formater';
 const useStyles = makeStyles({
   answerGrid: {
     marginLeft: '1rem',
-    width: '100% !important',
+    width: '100% !important'
   },
   answerRadioGroup: {
-    width: '100% !important',
+    width: '100% !important'
   },
   cardQuestNumber: {
-    backgroundColor: '#ededed !important',
+    backgroundColor: '#ededed !important'
   },
   btnSendAnswers: {
     margin: '1rem !important',
     marginTop: '0.5rem !important',
-    marginBottom: '2rem !important',
+    marginBottom: '2rem !important'
   },
   avatarQuestion: {
-    backgroundColor: '#303f9f !important',
+    backgroundColor: '#303f9f !important'
   },
   errorMsg: {
     color: '#FF0000 !important',
     textAlign: 'right !important',
-    width: '100% !important',
+    width: '100% !important'
   },
   boxListQuestions: {
     '@media(min-width: 900px)': {
-      width: '60vw !important',
-    },
-  },
+      width: '60vw !important'
+    }
+  }
 });
 
 const Questions = () => {
@@ -71,7 +71,7 @@ const Questions = () => {
   const formSubmit = (values) => {
     localStorage.setItem(
       'last-questions',
-      JSON.stringify(context.questionsData),
+      JSON.stringify(context.questionsData)
     );
     localStorage.setItem('last-answers', JSON.stringify(values));
     history.push('/report');
@@ -98,12 +98,12 @@ const Questions = () => {
     const answersFormated = answersSorted.map((answer, id) => {
       return (
         <FormControlLabel
-          control={<Radio color="primary" />}
+          control={<Radio color='primary' />}
           key={numberRandom()}
           label={answer}
           value={answer}
           data-testid={`card-answer-question-${idFormater(
-            questionID,
+            questionID
           )}-${idFormater(id)}`}
         />
       );
@@ -123,22 +123,22 @@ const Questions = () => {
           {context.questionsData.map((question, id) => (
             <Grid
               container
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
+              direction='row'
+              alignItems='center'
+              justifyContent='center'
               key={numberRandom()}
             >
               <FormControl
-                component="fieldset"
+                component='fieldset'
                 className={classes.questionFormated}
               >
-                <Box m="1rem" width="90vw" className={classes.boxListQuestions}>
-                  <Card className={classes.cardQuestNumber} variant="outlined">
+                <Box m='1rem' width='90vw' className={classes.boxListQuestions}>
+                  <Card className={classes.cardQuestNumber} variant='outlined'>
                     <CardHeader
                       data-testid={`card-header-question-${idFormater(id)}`}
                       avatar={
                         <Avatar
-                          aria-label="recipe"
+                          aria-label='recipe'
                           className={classes.avatarQuestion}
                           data-testid={`card-avatar-question-${idFormater(id)}`}
                         >
@@ -152,11 +152,11 @@ const Questions = () => {
                       subheader={`${question.category}`}
                     />
 
-                    <FormLabel component="legend">
+                    <FormLabel component='legend'>
                       <CardContent>
                         <Typography
-                          color="textPrimary"
-                          align="justify"
+                          color='textPrimary'
+                          align='justify'
                           gutterBottom
                           data-testid={`card-txt-question-${idFormater(id)}`}
                         >
@@ -168,9 +168,9 @@ const Questions = () => {
                     <CardActions>
                       <Grid
                         container
-                        direction="column"
-                        alignItems="flex-start"
-                        justifyContent="center"
+                        direction='column'
+                        alignItems='flex-start'
+                        justifyContent='center'
                         className={classes.answerGrid}
                       >
                         <RadioGroup
@@ -179,22 +179,22 @@ const Questions = () => {
                           onChange={(event) => {
                             props.setFieldValue(
                               idFormater(id),
-                              event.currentTarget.value,
+                              event.currentTarget.value
                             );
                           }}
                           onBlur={props.handleBlur}
                           value={props.values[idFormater(id)]}
-                          name={idFormater(id)}
+                          name={`answers-${idFormater(id)}`}
                         >
                           {listAnswersFormated(question, id)}
                           {props.errors[idFormater(id)] &&
                           props.touched[idFormater(id)] ? (
                             <Typography
-                              color="textPrimary"
+                              color='textPrimary'
                               className={classes.errorMsg}
                               gutterBottom
                               data-testid={`card-error-question-${idFormater(
-                                id,
+                                id
                               )}`}
                             >
                               Precisa ser respondido
