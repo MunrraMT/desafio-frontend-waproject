@@ -1,4 +1,4 @@
-# Desafio Front End - Post its
+# Desafio Front End - Wa Projects
 
 ## Desenvolvido usando:
 
